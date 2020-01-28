@@ -1,9 +1,28 @@
 import os
 import hashlib
 
-
 def hash_username(n):
+    """Return the digest of a hashed username using RSA's MD5 algorithm
+
+    :param n: The username to hash
+    :returns: The hashed usernames digest
+    :rtype: String
+
+    """
     return hashlib.md5(n.encode('utf-8')).hexdigest()
+
+def hash_column(df_column):
+    """Hash all usernames in a pandas dataframe column
+
+    :param df_column: The column to hash the usernames of
+    :returns: The column with its usernames hashed
+    :rtype: pandas.DataFrame
+
+    """
+    return df_column.apply(lambda x: hash_username(x))
+
+# def hash_username(n):
+#     return hashlib.md5(n.encode('utf-8')).hexdigest()
 
 
 def hash_foldername(n):
